@@ -12,8 +12,6 @@ class Score:
         self.score = 0
         
     def display(self):
-        print(str(self.playerScoreID) + "PLAYERID")
-        print(str(self.score) + " SCORE")
         return(False)
         
     def updateScore(self):
@@ -21,7 +19,7 @@ class Score:
             self.P1score += self.score
         elif self.playerScoreID == 2:
             self.P2score += self.score
-        print(str(self.P1score) + "Player1Score   " + str(self.P2score) + "Player2Score")
+        print(str(self.P1score) + " Player1Score   " + str(self.P2score) + " Player2Score")
             
         
     

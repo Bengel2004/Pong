@@ -14,9 +14,15 @@ ySpeedDefiner = random(0, 15)
 xSpeed = -4
 ySpeed = 0
 
-Player1 = Rect((frameXSize / 6), (frameYSize/2), 5, 33, 100, 1)
-Player2 = Rect((frameXSize - (frameXSize / 6)), (frameYSize/2), 5, 33, 100, 1)
-usedBall = Ball((frameXSize / 2), (frameYSize / 2), xSpeed, ySpeed, 33)
+rectYSpeed = 5
+rectWidth = 33
+rectHeight = 100
+
+ballRadius = 33
+
+Player1 = Rect((frameXSize / 6), (frameYSize/2), rectYSpeed, rectWidth, rectHeight, 1)
+Player2 = Rect((frameXSize - (frameXSize / 6)), (frameYSize/2), rectYSpeed, rectWidth, rectHeight, 1)
+usedBall = Ball((frameXSize / 2), (frameYSize / 2), xSpeed, ySpeed, ballRadius)
 thisScore = Score((frameXSize / 2), 100)
 
 #Vergeet niet de speed goed te randomizen en niet dat het 2 bij 6 word maar gewoon 6 bij 6 bijv 4 is optimale speed. bij 4x collide verander speed x 1.5?
