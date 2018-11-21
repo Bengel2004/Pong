@@ -16,5 +16,3 @@ class Rect:
         stroke(0)
         rect(self.x, self.y, self.xRadius, self.yRadius)
         
-    def move(self):
-        self.y += self.ySpeed
