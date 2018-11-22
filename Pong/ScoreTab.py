@@ -12,14 +12,13 @@ class Score:
         self.score = 0
         
     def display(self):
-        return(False)
+        text(str(self.P1score) + "           " + str(self.P2score), self.x, self.y)
         
     def updateScore(self):
         if self.playerScoreID == 1:
             self.P1score += self.score
         elif self.playerScoreID == 2:
             self.P2score += self.score
-        print(str(self.P1score) + " Player1Score   " + str(self.P2score) + " Player2Score")
             
         
     

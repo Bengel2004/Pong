@@ -5,34 +5,38 @@ from BallTab import Ball
 from RectTab import Rect
 from ScoreTab import Score
 
-frameXSize = 800
-frameYSize = 600
+frameXSize = 1920
+frameYSize = 1080
 
-xSpeedDefiner = random(0, 5)
-ySpeedDefiner = random(0, 15)
+xSpeedDefiner = random(0, 1)
+ySpeedDefiner = random(0, 1)
 
-xSpeed = -4
-ySpeed = 0
+defaultBallSpeed = 4
 
-rectYSpeed = 5
-rectWidth = 33
+if(xSpeedDefiner < 0.5):
+    xSpeed = -defaultBallSpeed
+else:
+    xSpeed = defaultBallSpeed
+if(ySpeedDefiner < 0.5):
+    ySpeed = -defaultBallSpeed
+else:
+    ySpeed = defaultBallSpeed
+
+playerSpeed = 20
+rectWidth = 32
 rectHeight = 100
 
-ballRadius = 33
+ballRadius = 32
 
-Player1 = Rect((frameXSize / 6), (frameYSize/2), rectYSpeed, rectWidth, rectHeight, 1)
-Player2 = Rect((frameXSize - (frameXSize / 6)), (frameYSize/2), rectYSpeed, rectWidth, rectHeight, 1)
+Player1 = Rect((frameXSize / 4), (frameYSize/2), playerSpeed, rectWidth, rectHeight, 1)
+Player2 = Rect((frameXSize - (frameXSize / 4)), (frameYSize/2), playerSpeed, rectWidth, rectHeight, 2)
 usedBall = Ball((frameXSize / 2), (frameYSize / 2), xSpeed, ySpeed, ballRadius)
 thisScore = Score((frameXSize / 2), 100)
-
-#Vergeet niet de speed goed te randomizen en niet dat het 2 bij 6 word maar gewoon 6 bij 6 bijv 4 is optimale speed. bij 4x collide verander speed x 1.5?
-#Fix de collision aan de linker kant op de x pos
-#Fix de y pos collision aan de onderkant
-
 
 Playerlist = []
 
 def setup():
+    fullScreen()
     size(frameXSize, frameYSize)
     frameRate(60)
     Playerlist.append(Player1)
@@ -40,6 +44,8 @@ def setup():
     
     
 def draw():
+    textSize(62)
+    textAlign(CENTER)
     background(0)
     thisScore.display()
     for item in range(0, len(Playerlist)):
@@ -52,11 +58,15 @@ def draw():
     if keyPressed:
         if key == CODED: #Player 2
             if keyCode == UP:
-                Playerlist[1].y += Playerlist[1].ySpeed
+                if Playerlist[1].y > 0: 
+                    Playerlist[1].y -= Playerlist[1].ySpeed
             elif keyCode == DOWN:
-                Playerlist[1].y -= Playerlist[1].ySpeed
-        else: #Player 1
-            if key == 'w':
-                Playerlist[0].y += Playerlist[0].ySpeed
-            elif key == 's':
+                if Playerlist[1].y < (height - Playerlist[1].yRadius):
+                    Playerlist[1].y += Playerlist[1].ySpeed
+    if keyPressed:
+        if key == 'w':
+            if Playerlist[0].y > 0: 
                 Playerlist[0].y -= Playerlist[0].ySpeed
+        elif key == 's':
+            if Playerlist[0].y < (height - Playerlist[0].yRadius):
+                Playerlist[0].y += Playerlist[0].ySpeed
